@@ -37,9 +37,9 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v4
     - name: Run GitLeaks Scan
-      uses: zricethezav/gitleaks-action@v1.3.0
+      uses: gitleaks/gitleaks-action@v2
       with:
-        args: detect --source . --report-path gitleaks-report.json --report-format json
+        args: detect --source . --report-path=gitleaks-report.json --report-format=json
     - name: Upload GitLeaks Report
       uses: actions/upload-artifact@v4
       with:
