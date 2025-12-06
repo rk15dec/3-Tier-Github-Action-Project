@@ -46,11 +46,10 @@ jobs:
         name: gitleaks-report
         path: gitleaks-report.json
 
-    trivy-scan:
-      runs-on: Agent-1
-      needs: gitleaks-scan
-
-      steps:
+  trivy-scan:
+    runs-on: Agent-1
+    needs: gitleaks-scan
+    steps:
       - name: Checkout Code
         uses: actions/checkout@v4
       - name: Run Trivy FS Scan
@@ -69,5 +68,3 @@ jobs:
         with:
           name: trivy-report
           path: trivy-report.sarif
-
-      
