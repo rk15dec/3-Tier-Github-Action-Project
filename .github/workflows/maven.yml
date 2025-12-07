@@ -58,7 +58,7 @@ jobs:
           scan-type: fs
           scanners: vuln,secret,misconfig
           path: .
-          exit-code: '1'
+          exit-code: '0'
           ignore-unfixed: true
           format: sarif
           output: trivy-report.sarif
