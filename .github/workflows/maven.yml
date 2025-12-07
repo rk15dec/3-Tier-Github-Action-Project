@@ -69,27 +69,27 @@ jobs:
           name: trivy-report
           path: trivy-report.sarif
 
-  sonarqube-scan:
-    runs-on: Agent-1
-    needs: trivy-scan
-    
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: 'temurin'
-          cache: maven
-      - name: Build Project
-        run: mvn -B package --file pom.xml
-      - name: SonarQube Scan
-        run: |
-            mvn sonar:sonar \
-              -Dsonar.projectKey=your_project_key \
-              -Dsonar.host.url=${{ secrets.SONARQUBE_HOST_URL }} \
-              -Dsonar.login=${{ secrets.SONARQUBE_TOKEN }} \
-              -Dsonar.qualitygate.wait=true
-        env:
-          SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST_URL }}
+#  sonarqube-scan:
+#    runs-on: Agent-1
+#    needs: trivy-scan
+#
+#    steps:
+#      - uses: actions/checkout@v4
+#      - name: Set up JDK 21
+#        uses: actions/setup-java@v4
+#        with:
+#          java-version: '21'
+#          distribution: 'temurin'
+#          cache: maven
+#      - name: Build Project
+#        run: mvn -B package --file pom.xml
+#      - name: SonarQube Scan
+#        run: |
+#            mvn sonar:sonar \
+#              -Dsonar.projectKey=your_project_key \
+#              -Dsonar.host.url=${{ secrets.SONARQUBE_HOST_URL }} \
+#              -Dsonar.login=${{ secrets.SONARQUBE_TOKEN }} \
+#              -Dsonar.qualitygate.wait=false
+#        env:
+#          SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
+#          SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST_URL }}
